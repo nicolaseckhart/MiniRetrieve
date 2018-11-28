@@ -1,30 +1,3 @@
-require_relative 'freq_list'
-
-SYS_NAME                = 'EckhartMiniRetrieve'
-RESULTS_FILE            = 'my_results.txt'
-SAVED_RESULT_COUNT      = 1000
-DISPLAYED_RESULTS_COUNT = 10
-
-# ================================================
-# CHECK ARGUMENTS
-# ================================================
-
-raise('give documents folder argument 1') if ARGV[0].nil?
-raise('give queries folder argument 2') if ARGV[1].nil?
-raise('documents folder not found') unless File.directory?(ARGV[0])
-raise('queries folder not found') unless File.directory?(ARGV[1])
-
-# ================================================
-# INIT DATA STRUCTURES
-# ================================================
-
-inverted_index      = {}
-non_inverted_index  = {}
-query_index         = {}
-idf                 = {}
-d_norm              = {}
-results             = {}
-
 # ================================================
 # READ AND INDEX DOCUMENTS
 # ================================================
