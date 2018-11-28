@@ -1,5 +1,6 @@
 # MiniRetrieve - N. Eckhart
-Ruby implementation of the MiniRetrieve lab in Information Engineering 1 @ ZHAW.
+Ruby implementation of the MiniRetrieve lab in Information Engineering 1 @ ZHAW. Contains english stopword removal
+and token stemming.
 
 ## Install
 
