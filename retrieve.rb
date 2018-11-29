@@ -4,9 +4,10 @@ require 'nokogiri'
 
 class Retrieve
   SYS_NAME                = 'EckhartMiniRetrieve'
-  RESULTS_FILE            = 'irg_results.txt'
+  RESULTS_FILE            = 'irg_results_stemming_and_stopwords_and_synonyms.txt'
   SAVED_RESULT_COUNT      = 1000
   DISPLAYED_RESULTS_COUNT = 10
+  SYNONYMS_PER_QUERY_WORD = 2
 
   attr_accessor :collection, :queries, :inverted_index, :non_inverted_index, :query_index, :idf, :d_norm, :results,
                 :document_count, :query_count, :stop_words
@@ -46,7 +47,7 @@ class Retrieve
     @document_count = documents.count
 
     documents.each do |document_xml|
-      document = Document.new(document_xml, @stop_words)
+      document = Document.new(document_xml, @stop_words, :corpus)
 
       # build inverted and non-inverted index
       @non_inverted_index[document.id] = FreqList.new
@@ -66,7 +67,7 @@ class Retrieve
     @query_count = documents.count
 
     documents.each do |document_xml|
-      document = Document.new(document_xml, @stop_words)
+      document = Document.new(document_xml, @stop_words, :query)
 
       @query_index[document.id] = FreqList.new
       document.tokens.each do |word|
